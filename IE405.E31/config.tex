@@ -1,0 +1,28 @@
+\newcommand{\TitleName}{Công nghệ phân tích dữ liệu lớn}
+\newcommand{\student}{Huỳnh Công Bằng}
+
+\newcommand{\FontB}[3]
+    {\normalfont\bfseries\fontsize{#1}{#2}\selectfont #3}
+\newcommand{\FontN}[3]
+    {\normalfont\fontsize{#1}{#2}\selectfont #3}
+\newcommand{\maintitle}
+    {\FontB{18pt}{20pt}{\TitleName} \\ \FontB{14pt}{20pt}{\student}}
+
+\newcommand{\bottitle}
+    {\FontB{13pt}{20pt}{Tp. Hồ Chí Minh, \today}}
+
+\newcommand{\bordertitle}{
+    \begin{tikzpicture}[remember picture,overlay,inner sep=0,outer sep=0]
+        \draw[black,line width=2.5pt] 
+            ([xshift=-0.9cm,yshift=-0.9cm]current page.north east) coordinate (A)--
+            ([xshift= 0.9cm,yshift=-0.9cm]current page.north west) coordinate (B)--
+            ([xshift= 0.9cm,yshift= 0.9cm]current page.south west) coordinate (C)--
+            ([xshift=-0.9cm,yshift= 0.9cm]current page.south east) coordinate (D)--cycle;
+            
+        \draw[black,line width=0.5pt] 
+            ([xshift=-1cm,yshift=-1cm]current page.north east) coordinate (A)--
+            ([xshift= 1cm,yshift=-1cm]current page.north west) coordinate (B)--
+            ([xshift= 1cm,yshift= 1cm]current page.south west) coordinate (C)--
+            ([xshift=-1cm,yshift= 1cm]current page.south east) coordinate (D)--cycle;
+    \end{tikzpicture}
+}
