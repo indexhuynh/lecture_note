@@ -1,5 +1,6 @@
-\input{library/library}
-\input{library/config}
+\input{library}
+\input{config}
+\newcommand{\tab}{\hspace{\parindent}}
 %-------------------------------------------------------------------------------
 \begin{document}
 \begin{titlepage}
@@ -14,13 +15,19 @@
 \tableofcontents
 \thispagestyle{empty}
 %-------------------------------------------------------------------------------
-% \newpage
-% \chapter*{ LỜI MỞ ĐẦU }
-% \thispagestyle{empty}
+\newpage
+\chapter*{ LỜI MỞ ĐẦU }
+\thispagestyle{empty}
 %-------------------------------------------------------------------------------
-% \vspace{\fill}
-
-% \vspace{\fill}
+\vspace{\fill}
+\begin{itemize}
+	\item Tuân thủ pháp luật trước khi học.
+	\item Học cách tư duy và sơ đồ phát triển.
+	\item Cần thực hành nhiều.
+	\item Các công cụ nguyên thủy được viết trên Scala (ngôn ngữ hướng hàm).
+	\item Mỗi lớp thực hành 2 buổi, sau đó báo cáo cuối kỳ (trong 4 buổi).
+\end{itemize}
+\vspace{\fill}
 %-------------------------------------------------------------------------------
 \newpage
 \setcounter{page}{1}
@@ -28,20 +35,89 @@
 %-------------------------------------------------------------------------------
 \section{ Mô tả môn học }
 \begin{itemize}
-    \item \textbf{Kiến thức cần thiết}: toán rời rạc và toán thống kê.
-    \item \textbf{Kiến thức được học}: Cung cấp kiến thức nền tảng về dữ liệu lớn, các mô hình và công cụ xử lý dữ liệu lớn.
-    \item \textbf{Kiến thức tự học:} kiến thức lĩnh vực (tự trang bị dữ liệu), vd như làm ở công ty nào thì học kiến thức của công ty đó. 
-    \item \textbf{Ngôn ngữ thực hành:} Python
+    \item \textbf{Kiến thức cần thiết}: Toán rời rạc và toán thống kê.
+    \item \textbf{Kiến thức được học}: Nền tảng dữ liệu lớn, mô hình và công 
+    cụ xử lý.
+    \item \textbf{Kiến thức tự học:} Văn hóa doanh nghiệp.
+    \item \textbf{Ngôn ngữ thực hành:} Python.
 \end{itemize}
 \section{ Mục tiêu }
 \begin{itemize}
-    \item \textbf{Hiểu và trình bày được các mô hình, khái niệm cơ bản.}
-    \item Sử dụng được các nền tảng lưu trữ dữ liệu lớn. (tổ chức và lưu trữ)
-    \item Áp dụng giải thuật khai phá dữ liệu trên dữ liệu lớn. (Data mining, Machine learning, AI,...)
-    \item Tìm hiểu những hệ thống và hệ sinh thái dữ liệu lớn.
+    \item \textbf{Hiểu và trình bày được các khái niệm cơ bản.}
+    \item Tổ chức và lưu trữ được các nền tảng lưu trữ dữ liệu lớn.
+    \item Áp dụng giải thuật Data mining, Machine learning, AI,... vào công việc.
+    \item Tìm hiểu hệ thống và hệ sinh thái công ty lựa chọn.
+\end{itemize}
+\section{ Nội dung môn học }
+\begin{itemize}
+	\item Tổng quan: Lý do học dữ liệu lớn.
+	\item Mô hình Mapreduce: Là mô hình ban đầu, tiền đề để phát triển.
+	\item Framework Apache Spark: học kiến thức nền tảng về công cụ xử lý dữ 
+	liệu lớn.
+	\item Hệ sinh thái dữ liệu lớn: vừa là đồ án cuối kỳ vừa là seminar.
+\end{itemize}
+\section{ Phân bố thời lượng }
+\begin{itemize}
+	\item Buổi 1: Giới thiệu
+	\item Buổi 2: Giới thiệu (tiếp)
+	\item Buổi 3: MapReduce
+	\item Buổi 4: MapReduce (tiếp)
+	\item Buổi 5: Apache Spark
+	\item Buổi 6: Apache Spark (tiếp)
+	\item Buổi 7: Thực hành 1 (lớp 1): Cài đặt Apache Spark và dùng thử
+	\item Buổi 8: Thực hành 1 (lớp 2): Cài đặt Apache Spark và dùng thử
+	\item Buổi 9: Thực hành 2 (lớp 1): Lập trình nâng cao với Apache Spark
+	\item Buổi 10: Thực hành 2 (lớp 2): Lập trình nâng cao với Apache Spark
+	\item Buổi 11: Thuyết trình: Hệ sinh thái dữ liệu lớn
+	\item Buổi 12: Thuyết trình: Hệ sinh thái dữ liệu lớn (tiếp)
+	\item Buổi 13: Thuyết trình: Hệ sinh thái dữ liệu lớn (tiếp)
+	\item Buổi 14: Thuyết trình: (tiếp) + ôn tập
+\end{itemize}
+\section{ Đánh giá }
+\tab Thực hành 20\%, Semina + Bài tập 30\%, Thi cuối ký 50\% 
+\section{ Seminar}
+\begin{itemize}
+	\item Tìm hiểu một hệ quản trị dữ liệu lớn
+	\item Tìm hiểu hệ thống xử lý bài toán dữ liệu lớn. (Real-time)
 \end{itemize}
 %-------------------------------------------------------------------------------
-\chapter{ Buổi 2 }
+\chapter{ Tổng quan }
+\section{ Giới thiệu }
+\subsection{ Bối cảnh }
+\tab Hãy mua trang thiết bị từ Samsung Smart Home để sống dễ hơn (tự nấu ăn tốn 
+3 tiếng với món khó thì nay chỉ tốn 1 tiếng, còn lại tự động hết), chưa kể đến
+rửa chén và dọn dẹp nhà cửa. Việc gì khó, có Samsung AI lo! Và dữ liệu lớn
+đã phát triển thành rất nhiều nhánh nhỏ như:
+\begin{itemize}
+	\item Tính toán song song
+	\item Lưu trữ khối lượng dữ liệu khổng lồ
+	\item Phân tán dữ liệu
+	\item Kết nối mạng tốc độ cao
+	\item Máy tính hiệu suất cao
+	\item Quản lý tác vụ và luồng xử lý
+	\item Phân tích và khai thác dữ liệu
+	\item Thu thập dữ liệu
+	\item Học máy
+	\item Trực quan hóa dữ liệu
+	\item Đều là những công nghệ rất cũ
+\end{itemize}
+
+\subsection{ Quá trình phát triển }
+\subsection{ Dữ liệu hiện tại }
+%-------------------------------------------------------------------------------
+\section{ Định nghĩa }
+%-------------------------------------------------------------------------------
+\section{ Đặc điểm }
+%-------------------------------------------------------------------------------
+\section{ Phân loại }
+%-------------------------------------------------------------------------------
+\section{ Quy trình xử lý }
+%-------------------------------------------------------------------------------
+\section{ Ứng dụng và xu hướng }
+%-------------------------------------------------------------------------------
+\section{ Thách thức và cơ hội }
+%-------------------------------------------------------------------------------
+\section{ Q \& A }
 %-------------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------------
