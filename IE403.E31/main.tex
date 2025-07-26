@@ -16,17 +16,48 @@
 \thispagestyle{empty}
 %-------------------------------------------------------------------------------
 \newpage
-\chapter*{ LỜI MỞ ĐẦU }
+\chapter*{ Course Project Guidelines }
 \thispagestyle{empty}
 %-------------------------------------------------------------------------------
 \vspace{\fill}
-\begin{itemize}
-\item 
-\end{itemize}
+For this course, you'll be implementing algorithms using \textbf{Python}. A significant part of your assessment will involve \textbf{team presentations}, which also require creating a \textbf{video report}.\\
+The course spans \textbf{eight sessions.} Your \textbf{midterm grade} will be based on submitted assignments and attendance. When programming, remember to \textbf{integrate a suitable user interface.} All necessary \textbf{data will be sourced from the theoretical lessons}, and you should \textbf{pay close attention during lectures} to understand data extraction techniques. It's important to \textbf{minimize the use of supporting libraries.}\\
+A key challenge in the IT field, as noted, is its \textbf{rapid development}. For further reference, you can consult the textbook "Data Mining" by \textbf{Prof. Dr. Do Phuc} and slides by \textbf{Dr. Nguyen Van Kiet}.
 \vspace{\fill}
 %-------------------------------------------------------------------------------
 \newpage
 \setcounter{page}{1}
-\chapter{ Giới thiệu }
+\chapter{ Overview }
+\section{What is data mining?}
+Data mining is the process of discovering valuable patterns and insights from large datasets.
+\section{Benefit of data mining}
+Data mining provides valuable insights and knowledge that can be used to \textbf{support decision-making, predict future trends or outcomes}, and \textbf{effectively summarize large datasets}.
+\section{Data mining process}
+The data mining process typically begins with understanding the \textbf{research field} and its objectives, which then guides the \textbf{creation of input data}. This raw data then undergoes initial \textbf{preprocessing, including cleaning and encoding}, to ensure its quality and suitability for analysis. Following this, \textbf{dimensionality reduction} techniques are often applied to simplify the dataset by reducing the number of features or attributes while retaining essential information. The next crucial step involves \textbf{selecting the appropriate task for data mining}, such as classification, clustering, or association rule discovery, which in turn informs the \textbf{selection of a suitable data mining algorithm}. The chosen algorithm is then applied to the prepared data to \textbf{discover hidden knowledge or patterns}. These \textbf{found patterns are then evaluated} to assess their validity, novelty, usefulness, and comprehensibility. Finally, the \textbf{extracted knowledge is presented} in an understandable format, making it ready for \textbf{deployment and practical use} to inform decision-making or achieve specific business objectives.
+\section{From data to decision}
+\begin{itemize}
+\item Data: customer data, store data, demographical data, geographical data
+\item Information: X lives in Z, S is Y years old, X and S moved, W has money in Z
+\item Knowledge: A quantity Y of product A is used in region Z, Customers of class
+      Y use x \% of C during period D
+\item Decision: Promote product A in region Z, Mail ads to families of profile
+      P, Cross-sell service B to clients C
+\end{itemize}
+\section{Explain}
+In the realm of data, \textbf{data} refers to isolated, raw facts or figures, like "Nguyen Thi Hoa Mai," "student," "Information Technology," or "Database subject." When these individual pieces of data are connected and given context, they transform into \textbf{information}. For instance, the statement "Nguyen Thi Hoa Mai is an Information Technology student, and information Technology has a subject called Database" establishes a relationship between these discrete data points. Building on this, \textbf{knowledge} represents a deeper understanding derived from the relationships within information. This understanding can exist at two levels. \textbf{Level one knowledge} is specific, linking a small group of information, such as: "Nguyen Thi Hoa Mai is an information Technology student, which is why she must learn the Database subject." Moving to a broader perspective, \textbf{level two knowledge} identifies patterns or rules across information, like: "If X is an Information Technology student, then X must learn the Database subject." This progression from raw data to actionable knowledge is fundamental in many analytical fields.
+\section{Two fundamental approaches tto data mining}
+Data mining can generally be approached in two ways. The first is a \textbf{verification-oriented approach} where the process begins with \textbf{proposing a hypothesis}. The system then focuses on \textbf{testing the validity of this hypothesis} through methods like \textbf{queries, reports, and statistical analysis.} This approach is driven by existing assumptions or questions that the data is used to confirm or refute.\\
+Conversely, the \textbf{discovery-oriented approach} aims to \textbf{uncover hidden knowledge or patterns within the database} without prior specific hypotheses. This method is more exploratory, allowing the algorithms to identify novel and potentially unexpected insights directly from the data.
+\section{Data mining techniques}
+Data mining employs various techniques to extract valuable insights from datasets. One common approach is \textbf{Frequent Itemsets and Association Rules}. This technique aims to discover attributes that frequently appear together within a dataset. From these frequent itemsets, \textbf{association rules} are generated to identify the likeihood of attributes occurring simultaneously among a set of objects. For example, a rule might state: "If a customer buys X, they will likely also buy Y" (e.g., 66.6\% of customers who buy beer also buy squid).\\
+Another powerful technique is \textbf{Sequential Pattern Mining}. This mehod focuses on uncovering common sequential patterns that reflect relationships between events in time-oriented databases. It seeks to identify an "X implies Y" relationship, where the occurrence of event X leads to the subsequent occurrence of event Y. An example could be: "80\% of customers who deposit over 80 million VND in savings will seposit an additional 20 million VND three months later." This technique is invaluable for discovering development trends or predicting future behaviors of objects.\\
+\textbf{Rough Sets (Reduct)} are primarily used for \textbf{dimensionality reduction} in data classification problems. This helps simplify complex datasets by removing redundant features while preserving essential information.\\
+\textbf{Data Classification} is a supervised learning technique that involves discovering classification rules for a dataset. These rules are used to assign new data points to predefined classes. For instance, patients exhibiting symptoms like coughing, cold, and headache might be classified into the "malaria" disease group.\\
+Finally, \textbf{Clustering} is an unsupervised learning process that groups data objects into clusters. The goal is to ensure that objects within the same cluster have a high degree of similarity, while objects in diffent clusters have a low degree of similarity. This technique helps in identifying natural groupings within data without prior knowledge of categories.
 %-------------------------------------------------------------------------------
+\chapter{Frequent itemset and Association rule}
+\section{Association rule}
+Based on the frequency of data to highlight importance. For example, if 80\% of customers who buy beer also buy cigarettes, this can help increase sales.
+\section{Cách biểu diễn luật}
+\(Khăn \Rightarrow Bia [0.5%, 60%]\): nghĩa là trong danh sách hóa đơn, có 
 \end{document}
