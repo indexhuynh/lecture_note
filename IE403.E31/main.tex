@@ -58,6 +58,128 @@ Finally, \textbf{Clustering} is an unsupervised learning process that groups dat
 \chapter{Frequent itemset and Association rule}
 \section{Association rule}
 Based on the frequency of data to highlight importance. For example, if 80\% of customers who buy beer also buy cigarettes, this can help increase sales.
-\section{Cách biểu diễn luật}
-\(Khăn \Rightarrow Bia [0.5%, 60%]\): nghĩa là trong danh sách hóa đơn, có 
+\section{Application of Association rules}
+
+\subsection{Understanding customer buying trends}
+This application focuses on leveraging customer purchasing data to inform business strategies. By analyzing transaction history, we can identify products that are frequently bought together. This knowledge is crucial for optimizing store layouts and managing inventory. For example, if analysis reveals that customers who buy beer often also buy nuts, a store can strategically place these items near each other to boost sales. This also helps in predicting future demand for products. By understanding these purchasing patterns, businesses can make more accurate forecasts for product imports, preventing both overstocking and product shortages.
+\subsection{Analyzing online inventory data}
+This involves applying association rule mining to e-commerce platforms to enhance the online shopping experience and streamline product management. By examine online sales data, businesses can distinguish between popular, fast-moving items and those with low demand. For instance, if a customer Browse product A frequently also buys product B, the website can be designed to automatically suggest product B, thereby increasing the likeihood of a larger purchase. This data also informs the ongoing management of the online product catalog. It helps in deciding which new products to introduce based on existing buying trends and which underperforming products should be removed or replaced to maintain an engaging and profitable product line.
+
+\section{How to represent this rule}
+\(Wet~Wipe \Rightarrow Beer [0.5\%, 60\%]\): This means that in a list of 'n' invoices, we can see that 0.5\% of the total invoices contain both beer and wet wipes, and among invoices that include wet wipes, 60\% will also contain beer
+\begin{itemize}
+    \item Wet Wipe: antecedent
+    \item Beer: consequent
+    \item 0.5\%: support
+    \item 60\%: confident
+\end{itemize}
+\section{problem statement}
+ In a data mining context, we define the following:
+ \begin{itemize}
+     \item \(O\) is a finite, non-empty set of \textbf{transactions} (or invoices)
+     \item \(I\) is a finite, non-empty set of \textbf{items}
+     \item \(R\) is a binary \textbf{relation} between \(O\) and \(I\). If an element \((o,i)\) belongs to \(R\), where \(o \in O\) and \(i \in I\), it signifies that transaction \(o\) contains item \(i\).
+\end{itemize}
+The data mining context is therefore represented as the triplet \((O,I,R)\).
+\section{Example of a data mining context}
+\begin{center}
+\begin{tabular}{c|c}
+\hline InvoiceID & ItemID \\
+\hline o1 & i1 \\
+\hline o1 & i2 \\
+\hline o1 & i3 \\
+\hline o2 & i2 \\
+\hline o2 & i3 \\
+\hline o2 & i4 \\
+\hline o3 & i2 \\
+\hline o3 & i3 \\
+\hline o3 & i4 \\
+\hline o4 & i1 \\
+\hline o4 & i2 \\
+\hline o4 & i3 \\
+\hline o5 & i3 \\
+\hline o5 & i4 \\
+\hline
+\end{tabular}
+\end{center}
+\section{Understanding Suport}
+Given a data mining context \((O,I,R)\) and an itemset \(S\) (\(S \subset I\)), the \textbf{support} of \(S\) is defined as the ratio of the number of transactions that contain \(S\) to the total number of transactions in \(O\).\\
+It's formally denoted as:
+\[SP(S)=\dfrac{|\rho(S)|}{|O|}\]
+Where \(\rho(S)\) represents the set of transactions that contain all items in \(S\).
+\section{Frequent itemset}
+They are itemsets whose \textbf{support} is greater than or equal to a predefined threshold, known as \textit{minsupp}.
+\section{How to find frequent itemsets: An Example Walkthrough}
+\subsection{Question}
+Given a data mining context, find all \textbf{frequent itemsets} that satisfy a minimum support threshold (\textit{minsupp}) of \textbf{0.4}.
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline InvoiceID & ItemID \\
+\hline o1 & i1 \\
+\hline o1 & i2 \\
+\hline o1 & i3 \\
+\hline o2 & i2 \\
+\hline o2 & i3 \\
+\hline o2 & i4 \\
+\hline o3 & i2 \\
+\hline o3 & i3 \\
+\hline o3 & i4 \\
+\hline o4 & i1 \\
+\hline o4 & i2 \\
+\hline o4 & i3 \\
+\hline o5 & i3 \\
+\hline o5 & i4 \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Answer}
+Since the minimum support(\textit{minsupp}) is 0.4 and the total number of transactions is 5, any \textbf{frequent itemset} satisfying the problem's requirements must appear in at least \(0.4 \times 5 = 2\) transactions
+\subsubsection{Establish a binary matrix}
+\begin{center}
+\begin{tabular}{|*{5}{c|}}
+\hline & \(i1\) & \(i2\) & \(i3\) & \(i4\) \\
+%              i1  i2  i3  i4
+\hline \(o1\) & 1 & 1 & 1 & 0 \\
+\hline \(o2\) & 0 & 1 & 1 & 1 \\
+\hline \(o3\) & 0 & 1 & 1 & 1 \\
+\hline \(o4\) & 1 & 1 & 1 & 0 \\
+\hline \(o5\) & 0 & 0 & 1 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+\subsubsection{Identifying frequent itemsets that meet the minimum support threshold}
+The candidate itemsets of size 1 are \(F_1=\{\{i1\},\{i2\},\{i3\},\{i4\}\}\)
+\begin{itemize}
+\item \(SP(\{i1\})=\dfrac{2}{5}=0.40\); Popular \((\geq minsupp)\)
+\item \(SP(\{i2\})=\dfrac{4}{5}=0.80\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i3\})=\dfrac{5}{5}=1.00\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i4\})=\dfrac{3}{5}=0.60\); Popular  \((\geq minsupp)\)
+\end{itemize}
+The frequent itemsets consisting of a single item are: \(C1=\{\{i1\},\{i2\},\{i3\},\{i4\}\}\)
+\subsubsection{Frequent itemsets using Apriori's Pruning Strategy}
+The \textbf{candidate set} \(C_k\) is generated by joining \(L_{k-1}\) with itself. This is the \textbf{join step}.\\
+The \textbf{pruning step} (or "trimming step") then applies the Apriori principle: any itemset of size \((k-1)\) that is not frequent cannot be a subset of a frequent itemset of size \(k\)
+\subsubsection{Identifying frequent itemsets that meet the minimum support threshold (to be continued)}
+The candidate itemsets of size 2 from the frequent itemsets \(C1\) are \[F_2=\{\{i1,i2\},\{i1,i3\},\{i1,i4\},\{i2,i3\},\{i2,i4\},\{i3,i4\}\}\]
+\begin{itemize}
+\item \(SP(\{i1,i2\})=\dfrac{2}{5}=0.40\); Popular \((\geq minsupp)\)
+\item \(SP(\{i1,i3\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i1,i4\})=\dfrac{0}{5}=0.00\); Not popular  \((< minsupp)\)
+\item \(SP(\{i2,i3\})=\dfrac{4}{5}=0.80\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i2,i4\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i3,i4\})=\dfrac{3}{5}=0.60\); Popular  \((\geq minsupp)\)
+\end{itemize}
+The frequent itemsets consisting of two items are: \[C2=\{\{i1,i2\},\{i1,i3\},\{i2,i3\},\{i2,i4\},\{i3,i4\}\}\]
+The candidate itemsets of size 3 from the frequent itemsets \(C2\) are \[F_3=\{\{i1,i2,i3\},\{i1,i2,i4\},\{i1,i3,i4\},\{i2,i3,i4\}\}\]
+\begin{itemize}
+\item \(SP(\{i1,i2,i3\})=\dfrac{2}{5}=0.40\); Popular \((\geq minsupp)\)
+\item \(SP(\{i2,i3,i4\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(\{i1,i4\}\)is not popular, therefore \(\{i1, i2, i4\}\) and \(\{i1, i3, i4\}\) are not popular
+\end{itemize}
+The frequent itemsets consisting of three items are: \[C3=\{\{i1,i2,i3\},\{i2,i3,i4\}\}\]
+The candidate itemsets of size 4 from the frequent itemsets \(C3\) are \(F_4=\{\{i1,i2,i3,i4\}\}\)
+\begin{itemize}
+\item \(\{i1,i4\}\)is not popular, therefore \(\{i1, i2, i3, i4\}\)is not popular
+\end{itemize}
+Frequent itemsets that meet the minimum support threshold are \(\{i1\}\), \(\{i2\}\), \(\{i3\}\), \(\{i4\}\), \(\{i1,i2\}\), \(\{i1,i3\}\), \(\{i2,i3\}\), \(\{i2,i4\}\), \(\{i3,i4\}\), \(\{i1,i2,i3\}\), \(\{i2,i3,i4\}\)
 \end{document}
