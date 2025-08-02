@@ -1,6 +1,10 @@
 \input{library}
 \input{config}
 \newcommand{\tab}{\hspace{\parindent}}
+\newcommand{\TextBox}[4]{
+    \draw (#1,#2) node[anchor=south west,node font=\normalsize] {#3};
+    \draw[rounded corners=0.2cm,black] (#1-0.3,#2+0.8) rectangle (#1+#4,#2); 
+}
 %-------------------------------------------------------------------------------
 \begin{document}
 \begin{titlepage}
@@ -45,7 +49,7 @@ The data mining process typically begins with understanding the \textbf{research
 \end{itemize}
 \section{Explain}
 In the realm of data, \textbf{data} refers to isolated, raw facts or figures, like "Nguyen Thi Hoa Mai," "student," "Information Technology," or "Database subject." When these individual pieces of data are connected and given context, they transform into \textbf{information}. For instance, the statement "Nguyen Thi Hoa Mai is an Information Technology student, and information Technology has a subject called Database" establishes a relationship between these discrete data points. Building on this, \textbf{knowledge} represents a deeper understanding derived from the relationships within information. This understanding can exist at two levels. \textbf{Level one knowledge} is specific, linking a small group of information, such as: "Nguyen Thi Hoa Mai is an information Technology student, which is why she must learn the Database subject." Moving to a broader perspective, \textbf{level two knowledge} identifies patterns or rules across information, like: "If X is an Information Technology student, then X must learn the Database subject." This progression from raw data to actionable knowledge is fundamental in many analytical fields.
-\section{Two fundamental approaches tto data mining}
+\section{Two fundamental approaches to data mining}
 Data mining can generally be approached in two ways. The first is a \textbf{verification-oriented approach} where the process begins with \textbf{proposing a hypothesis}. The system then focuses on \textbf{testing the validity of this hypothesis} through methods like \textbf{queries, reports, and statistical analysis.} This approach is driven by existing assumptions or questions that the data is used to confirm or refute.\\
 Conversely, the \textbf{discovery-oriented approach} aims to \textbf{uncover hidden knowledge or patterns within the database} without prior specific hypotheses. This method is more exploratory, allowing the algorithms to identify novel and potentially unexpected insights directly from the data.
 \section{Data mining techniques}
@@ -182,4 +186,234 @@ The candidate itemsets of size 4 from the frequent itemsets \(C3\) are \(F_4=\{\
 \item \(\{i1,i4\}\)is not popular, therefore \(\{i1, i2, i3, i4\}\)is not popular
 \end{itemize}
 Frequent itemsets that meet the minimum support threshold are \(\{i1\}\), \(\{i2\}\), \(\{i3\}\), \(\{i4\}\), \(\{i1,i2\}\), \(\{i1,i3\}\), \(\{i2,i3\}\), \(\{i2,i4\}\), \(\{i3,i4\}\), \(\{i1,i2,i3\}\), \(\{i2,i3,i4\}\)
+\newpage
+\subsection{definition of an itemset}
+%\(\{i1\}\), \(\{i2\}\), \(\{i3\}\), \(\{i4\}\), 
+
+\begin{tikzpicture}[,remember picture, overlay, shift=(current page.south west)]
+\TextBox{6}{26.2}{\(|i2, i3, i4|\)}{2.5}
+\TextBox{12}{26.2}{\(|i1, i2, i3|\)}{2.5}
+\TextBox{2.5}{23.2}{\(|i1, i2|\)}{1.9}
+\draw[->, line width=1pt] (3.2,24) -- (13.25,26.2);
+\TextBox{6}{23.2}{\(|i1, i3|\)}{1.9}
+\draw[->, line width=1pt] (6.95,24) -- (13.25,26.2);
+\TextBox{9.5}{23.2}{\(|i2, i3|\)}{1.9}
+\draw[->, line width=1pt] (10.325,24) -- (7.2,26.2);
+\draw[->, line width=1pt] (10.325,24) -- (13.25,26.2);
+\TextBox{13}{23.2}{\(|i2, i4|\)}{1.9}
+\draw[->, line width=1pt] (13.95,24) -- (7.2,26.2);
+\TextBox{16.5}{23.2}{\(|i3, i4|\)}{1.9}
+\draw[->, line width=1pt] (17.325,24) -- (7.2,26.2);
+\TextBox{4.5}{20.2}{\(|i1|\)}{1.3}
+\draw[->, line width=1pt] (5.15,21) -- (3.2,23.2);
+\draw[->, line width=1pt] (5.15,21) -- (6.95,23.2);
+\TextBox{8}{20.2}{\(|i2|\)}{1.3}
+\draw[->, line width=1pt] (8.65,21) -- (3.2,23.2);
+\draw[->, line width=1pt] (8.65,21) -- (10.325,23.2);
+\draw[->, line width=1pt] (8.65,21) -- (13.95,23.2);
+\TextBox{11.5}{20.2}{\(|i3|\)}{1.3}
+\draw[->, line width=1pt] (12.15,21) -- (10.325,23.2);
+\draw[->, line width=1pt] (12.15,21) -- (17.325,23.2);
+\TextBox{15}{20.2}{\(|i4|\)}{1.3}
+\draw[->, line width=1pt] (15.65,21) -- (13.95,23.2);
+\draw[->, line width=1pt] (15.65,21) -- (17.325,23.2);
+\TextBox{10}{17.2}{\(||\)}{1}
+\draw[->, line width=1pt] (10.5,18) -- (5.15,20.2);
+\draw[->, line width=1pt] (10.5,18) -- (8.65,20.2);
+\draw[->, line width=1pt] (10.5,18) -- (12.15,20.2);
+\draw[->, line width=1pt] (10.5,18) -- (15.65,20.2);
+\end{tikzpicture}
+\vspace{10.5cm}
+\subsection{Find maximal frequent itemsets}
+\(FS(O,I,R)\) is the set of maximal frequent itemsets. \(M\) is called a maximal frequent itemset if there is no \(S\) in \(FS(O,I,R,minsupp)\) such that \(M\) is a proper subset of \(S\) (\(M\) is a subset of \(S\), and \(M\) is not equal to \(S\)). In the example above, the maximal frequent itemsets are \(\{i1,i2,i3\}\) and \(\{i2,i3,i4\}\).
+\subsection{Confidence of the rule}
+The \textbf{confidence} of an association rule \(X \rightarrow Y\) is denoted as \(CF(X \rightarrow Y)\). The confidence is calculated as \(CF(X \rightarrow Y) = \frac{SP(S)}{SP(X)}\), where \(S = X \cup Y\) (union). A valid association rule is one with a confidence value greater than or equal to \textbf{minconf} (minimum confidence).
+\section{In-class assignment}
+\subsection{Problem statement}
+Given the set of invoices \(O\{o1,o2,o3,o4,o5,o6\}\), the set of items \(I\{i1,i2,i3,i4,i5,i6\}\), and the following transaction sets: \(o1(i1,i2,i3,i4)\) ; \(o2(i1,i2,i3)\) ; \(o3(i2,i3,i4,i5,i6)\) ; \(o4(i1,i2,i4,i5,i6)\) ; \(o5(i2,i4,i6)\) ; \(o6(i1,i2,i4,i5,i6)\).
+\begin{itemize}
+\item 1. Find all \textbf{frequent itemsets} with a minimum support threshold of 0.5
+\item 2. Find all \textbf{maximal frequent itemsets} with a minimum support threshold of 0.5
+\item List 3 rules from the maximal frequent itemsets, and calculate the \textbf{confidence} for these 3 rules
+\end{itemize}
+\subsection{Find all \textbf{frequent itemsets} with a minimum support threshold of 0.5}
+Since the minimum support(\textit{minsupp}) is 0.5 and the total number of transactions is 6, any \textbf{frequent itemset} satisfying the problem's requirements must appear in at least \(0.5 \times 6 = 3\) transactions
+\subsubsection{Establish a binary matrix}
+\begin{center}
+\begin{tabular}{|*{7}{c|}}
+\hline & \(i1\) & \(i2\) & \(i3\) & \(i4\) & \(i5\) & \(i6\) \\
+%              i1  i2  i3  i4  i5  i6
+\hline \(o1\) & 1 & 1 & 1 & 1 & 0 & 0 \\
+\hline \(o2\) & 1 & 1 & 1 & 0 & 0 & 0 \\
+\hline \(o3\) & 0 & 1 & 1 & 1 & 1 & 1 \\
+\hline \(o4\) & 1 & 1 & 0 & 1 & 1 & 1 \\
+\hline \(o5\) & 0 & 1 & 0 & 1 & 0 & 1 \\
+\hline \(o6\) & 1 & 1 & 0 & 1 & 1 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+\subsubsection{Identifying frequent itemsets that meet the minimum support threshold}
+The candidate itemsets of size 1 are \(F_1=\{\{i1\},\{i2\},\{i3\},\{i4\},\{i5\},\{i6\}\}\)
+\begin{itemize}
+\item \(SP(\{i1\})=\dfrac{4}{6}=0.67\); Popular \((\geq minsupp)\)
+\item \(SP(\{i2\})=\dfrac{6}{6}=1.00\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i3\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i4\})=\dfrac{5}{6}=0.83\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i5\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i6\})=\dfrac{4}{6}=0.67\); Popular  \((\geq minsupp)\)
+\end{itemize}
+The frequent itemsets consisting of a single item are: \[C1=\{\{i1\},\{i2\},\{i3\},\{i4\},\{i5\},\{i6\}\}\]
+The candidate itemsets of size 2 from the frequent itemsets \(C1\) are \(F_2=\{\{i1,i2\},\{i1,i3\}\) , \(\{i1,i4\},\{i1,i5\},\{i1,i6\},\{i2,i3\},\{i2,i4\},\{i2,i5\},\{i2,i6\},\{i3,i4\},\{i3,i5\},\{i3,i6\}\) , \(\{i4,i5\},\{i4,i6\},\{i5,i6\}\}\)
+%  i1  i2  i3  i4  i5  i6
+%   1 | 1 | 1 | 1 | 0 | 0   
+%   1 | 1 | 1 | 0 | 0 | 0   
+%   0 | 1 | 1 | 1 | 1 | 1   
+%   1 | 1 | 0 | 1 | 1 | 1   
+%   0 | 1 | 0 | 1 | 0 | 1   
+%   1 | 1 | 0 | 1 | 1 | 1   
+\begin{itemize}
+\item \(SP(\{i1,i2\})=\dfrac{4}{6}=0.67\); Popular \((\geq minsupp)\)
+\item \(SP(\{i1,i3\})=\dfrac{2}{6}=0.33\); Not popular  \((< minsupp)\)
+\item \(SP(\{i1,i4\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i1,i5\})=\dfrac{2}{6}=0.33\); Not popular  \((< minsupp)\)
+\item \(SP(\{i1,i6\})=\dfrac{2}{6}=0.33\); Not popular  \((< minsupp)\)
+\item \(SP(\{i2,i3\})=\dfrac{3}{6}=0.50\); Popular \((\geq minsupp)\)
+\item \(SP(\{i2,i4\})=\dfrac{5}{6}=0.83\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i2,i5\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i2,i6\})=\dfrac{4}{6}=0.67\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i3,i4\})=\dfrac{2}{6}=0.33\); Not popular  \((< minsupp)\)
+\item \(SP(\{i3,i5\})=\dfrac{1}{6}=0.17\); Not popular  \((< minsupp)\)
+\item \(SP(\{i3,i6\})=\dfrac{1}{6}=0.17\); Not popular  \((< minsupp)\)
+\item \(SP(\{i4,i5\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i4,i6\})=\dfrac{4}{6}=0.67\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i5,i6\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\end{itemize}
+The frequent itemsets consisting of two items are: \(C_2=\{\{i1,i2\},\{i1,i4\},\{i2,i3\}\) , \(\{i2,i4\},\{i2,i5\},\{i2,i6\},\{i4,i5\},\{i4,i6\},\{i5,i6\}\}\)\\
+The candidate itemsets of size 3 from the frequent itemsets \(C2\) are\\ \(F_3=\{\{i1,i2,i3\},\{i1,i2,i4\},\{i1,i2,i5\},\{i1,i2,i6\},\{i1,i4,i5\},\{i1,i4,i6\},\{i2,i3,i4\}\) , \(\{i2,i3,i5\},\{i2,i3,i6\},\{i2,i4,i5\},\{i2,i4,i6\},\{i2,i5,i6\},\{i4,i5,i6\}\}\)
+%  i1  i2  i3  i4  i5  i6
+%   1 | 1 | 1 | 1 | 0 | 0   
+%   1 | 1 | 1 | 0 | 0 | 0   
+%   0 | 1 | 1 | 1 | 1 | 1   
+%   1 | 1 | 0 | 1 | 1 | 1   
+%   0 | 1 | 0 | 1 | 0 | 1   
+%   1 | 1 | 0 | 1 | 1 | 1   
+\begin{itemize}
+\item \(SP(\{i1,i2,i4\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(SP(\{i2,i4,i5\})=\dfrac{3}{6}=0.50\); Popular \((\geq minsupp)\)
+\item \(SP(\{i2,i4,i6\})=\dfrac{3}{6}=0.50\); Popular \((\geq minsupp)\)
+\item \(SP(\{i2,i5,i6\})=\dfrac{3}{6}=0.50\); Popular \((\geq minsupp)\)
+\item \(SP(\{i4,i5,i6\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(\{i1,i3\}\)is not popular, therefore \(\{i1, i2, i3\}\) is not popular
+\item \(\{i1,i5\}\)is not popular, therefore \(\{i1, i2, i5\}\) and \(\{i1, i4, i5\}\) are not popular
+\item \(\{i1,i6\}\)is not popular, therefore \(\{i1, i2, i6\}\) and \(\{i1, i4, i6\}\) are not popular
+\item \(\{i3,i4\}\)is not popular, therefore \(\{i2, i3, i4\}\) is not popular
+\item \(\{i3,i5\}\)is not popular, therefore \(\{i2, i3, i5\}\) is not popular
+\item \(\{i3,i6\}\)is not popular, therefore \(\{i2, i3, i6\}\) is not popular
+\end{itemize}
+The frequent itemsets consisting of three items are: \[C_3=\{\{i1,i2,i4\},\{i2,i4,i5\},\{i2,i4,i6\},\{i2,i5,i6\},\{i4,i5,i6\}\}\]
+The candidate itemsets of size 4 from the frequent itemsets \(C3\) are\\ \(F_4=\{\{i1,i2,i4,i5\},\{i1,i2,i4,i6\},\{i2,i4,i5,i6\}\}\)
+%  i1  i2  i3  i4  i5  i6
+%   1 | 1 | 1 | 1 | 0 | 0   
+%   1 | 1 | 1 | 0 | 0 | 0   
+%   0 | 1 | 1 | 1 | 1 | 1   
+%   1 | 1 | 0 | 1 | 1 | 1   
+%   0 | 1 | 0 | 1 | 0 | 1   
+%   1 | 1 | 0 | 1 | 1 | 1   
+\begin{itemize}
+\item \(SP(\{i2,i4,i5,i6\})=\dfrac{3}{6}=0.50\); Popular  \((\geq minsupp)\)
+\item \(\{i1,i2,i5\}\)is not popular, therefore \(\{i1, i2, i4, i5\}\) is not popular
+\item \(\{i1,i2,i6\}\)is not popular, therefore \(\{i1, i2, i4, i6\}\) is not popular
+\end{itemize}
+The frequent itemsets consisting of four items is: \(C_4=\{\{i2,i4,i5,i6\}\}\)\\
+Frequent itemsets that meet the minimum support threshold are \(\{\{i1\}\) , \(\{i2\}\) , \(\{i3\}\) , \(\{i4\}\) , \(\{i5\}\) , \(\{i6\}\}\) , \(\{\{i1,i2\}\) , \(\{i1,i4\}\) , \(\{i2,i3\}\) , \(\{i2,i4\}\) , \(\{i2,i5\}\) , \(\{i2,i6\}\) , \(\{i4,i5\}\) , \(\{i4,i6\}\) , \(\{i5,i6\}\}\) , \(\{\{i1,i2,i4\}\) , \(\{i2,i4,i5\}\) , \(\{i2,i4,i6\}\) , \(\{i2,i5,i6\}\) , \(\{i4,i5,i6\}\}\) , \(\{\{i2,i4,i5,i6\}\}\)
+\subsection{Find all \textbf{maximal frequent itemsets} with a minimum support threshold of 0.5}
+The \textbf{maximal frequent itemsets} with a minimum support threshold of 0.5 are:\\ \(\{\{i2,i4,i5,i6\}\}\), \(\{\{i1,i2,i4\}\), \(\{i2,i3\}\)
+\subsection{List 3 rules from the maximal frequent itemsets, and calculate the \textbf{confidence} for these 3 rules}
+Consider the maximal frequent itemset {i2,i4,i5,i6}. From this itemset, we can generate several association rules. Here are three examples:
+\begin{itemize}
+\item \textbf{Rule 1:} \(\{i2\} \rightarrow \{i4,i5,i6\}\). The confidence of this rule is calculated as: \[CF(i2 \rightarrow \{i4,i5,i6\}) = \frac{SP(\{i2, i4, i5, i6\})}{SP(i2)} = \frac{0.5}{1} = 50\%\]
+\item \textbf{Rule 2:} \(\{i4\} \rightarrow \{i2,i5,i6\}\). The confidence of this rule is calculated as: \[CF(i4 \rightarrow \{i2,i5,i6\}) = \frac{SP(\{i2,i4,i5,i6\})}{SP(i4)} = \frac{0.5}{\frac{5}{6}} = 60\%\]
+\item \textbf{Rule 3:} \(\{i5\} \rightarrow \{i2,i4,i6\}\). The confidence of this rule is calculated as: \[CF(i5 \rightarrow \{i2,i4,i6\}) = \frac{SP(\{i2,i4,i5,i6\})}{SP(i5)} = \frac{0.5}{0.5} = 100\%\]
+\end{itemize}
+\section{Problem 1}
+\subsection{Problem statement}
+Given the context with the following transactions: \(o1 = \{d1,d3,d4\}\), \(o2 = \{d1,d3,d4\}\), \(o3 = \{d3,d5\}\), \(o4 = \{d4,d5\}\), \(o5 = \{d2,d3,d5\}\)
+\begin{itemize}
+\item Find the \textbf{maximal frequent itemsets} with a minimum support of 0.3
+\item List a number of rules that meet the minimum confidence threshold of 1.0
+\end{itemize}
+\subsection{Find the \textbf{maximal frequent itemsets} with a minimum support of 0.3}
+Since the minimum support(\textit{minsupp}) is 0.3 and the total number of transactions is 5, any \textbf{frequent itemset} satisfying the problem's requirements must appear in at least \(0.3 \times 5 = 1.5\) transactions
+\subsubsection{Establish a binary matrix}
+\begin{center}
+\begin{tabular}{|*{6}{c|}}
+\hline & \(d1\) & \(d2\) & \(d3\) & \(d4\) & \(d5\) \\
+%              d1  d2  d3  d4  d5
+\hline \(o1\) & 1 & 0 & 1 & 1 & 0 \\
+\hline \(o2\) & 1 & 0 & 1 & 1 & 0 \\
+\hline \(o3\) & 0 & 0 & 1 & 0 & 1 \\
+\hline \(o4\) & 0 & 0 & 0 & 1 & 1 \\
+\hline \(o5\) & 0 & 1 & 1 & 0 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+\subsubsection{Identifying frequent itemsets that meet the minimum support threshold}
+The candidate itemsets of size 1 are \(F_1=\{\{d1\},\{d2\},\{d3\},\{d4\},\{d5\}\}\)
+\begin{itemize}
+\item \(SP(\{d1\})=\dfrac{2}{5}=0.40\); Popular \((\geq minsupp)\)
+\item \(SP(\{d2\})=\dfrac{1}{5}=0.20\); Not popular  \((< minsupp)\)
+\item \(SP(\{d3\})=\dfrac{4}{5}=0.80\); Popular  \((\geq minsupp)\)
+\item \(SP(\{d4\})=\dfrac{3}{5}=0.60\); Popular  \((\geq minsupp)\)
+\item \(SP(\{d5\})=\dfrac{3}{5}=0.60\); Popular  \((\geq minsupp)\)
+\end{itemize}
+The frequent itemsets consisting of a single item are: \(C1=\{\{d1\},\{d3\},\{d4\},\{d5\}\}\)
+The candidate itemsets of size 2 from the frequent itemsets \(C1\) are \(F_2=\{\{d1,d3\},\{d1,d4\}\) , \(\{d1,d5\},\{d3,d4\},\{d3,d5\},\{d4,d5\}\}\)
+% d1  d2  d3  d4  d5
+%| 1 | 0 | 1 | 1 | 0 
+%| 1 | 0 | 1 | 1 | 0 
+%| 0 | 0 | 1 | 0 | 1 
+%| 0 | 0 | 0 | 1 | 1 
+%| 0 | 1 | 1 | 0 | 1 
+\begin{itemize}
+\item \(SP(\{d1,d3\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(SP(\{d1,d4\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(SP(\{d1,d5\})=\dfrac{0}{5}=0.00\); Not popular  \((< minsupp)\)
+\item \(SP(\{d3,d4\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(SP(\{d3,d5\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(SP(\{d4,d5\})=\dfrac{1}{5}=0.20\); Not popular  \((< minsupp)\)
+\end{itemize}
+The frequent itemsets consisting of two items are: \[C_2=\{\{d1,d3\},\{d1,d4\},\{d3,d4\},\{d3,d5\}\}\]
+The candidate itemsets of size 3 from the frequent itemsets \(C2\) are: \[F_3=\{\{d1,d3,d4\},\{d1,d3,d5\},\{d3,d4,d5\}\}\]
+% d1  d2  d3  d4  d5
+%| 1 | 0 | 1 | 1 | 0 
+%| 1 | 0 | 1 | 1 | 0 
+%| 0 | 0 | 1 | 0 | 1 
+%| 0 | 0 | 0 | 1 | 1 
+%| 0 | 1 | 1 | 0 | 1 
+\begin{itemize}
+\item \(SP(\{d1,d3,d4\})=\dfrac{2}{5}=0.40\); Popular  \((\geq minsupp)\)
+\item \(\{d1,d5\}\)is not popular, therefore \(\{d1,d3,d5\}\) is not popular
+\item \(\{d4,d5\}\)is not popular, therefore \(\{d3,d4,d5\}\) is not popular
+\end{itemize}
+The frequent itemsets consisting of three items is: \(C_3=\{\{d1,d3,d4\}\}\)\\
+Frequent itemsets that meet the minimum support threshold are \(\{d1\}\), \(\{d3\}\), \(\{d4\}\), \(\{d5\}\), \(\{d1,d3\}\), \(\{d1,d4\}\), \(\{d3,d4\}\), \(\{d3,d5\}\), \(\{d1,d3,d4\}\)\\
+The \textbf{maximal frequent itemsets} with a minimum support threshold of 0.3 are:\\ \(\{d1,d3,d4\}\), \(\{d3,d5\}\)
+\subsection{List a number of rules that meet the minimum confidence threshold of 1.0}
+Consider the maximal frequent itemset \(\{d1,d3,d4\}\). From this itemset, we can generate several association rules:
+\begin{itemize}
+\item \textbf{Rule 1:} \(\{d1\} \rightarrow \{d3,d4\}\). The confidence of this rule is calculated as: \[CF(d1 \rightarrow \{d3,d4\}) = \frac{SP(\{d1, d3, d4\})}{SP(d1)} = \frac{0.4}{0.4} = 100\%\]
+\item \textbf{Rule 2:} \(\{d3\} \rightarrow \{d1,d4\}\). The confidence of this rule is calculated as: \[CF(d3 \rightarrow \{d1,d4\}) = \frac{SP(\{d1, d3, d4\})}{SP(d3)} = \frac{0.4}{0.8} = 50\%\]
+\item \textbf{Rule 3:} \(\{d4\} \rightarrow \{d1,d3\}\). The confidence of this rule is calculated as: \[CF(d4 \rightarrow \{d1,d3\}) = \frac{SP(\{d1, d3, d4\})}{SP(d4)} = \frac{0.4}{0.6} = 67\%\]
+\item \textbf{Rule 4:} \(\{d3,d4\} \rightarrow \{d1\}\). The confidence of this rule is calculated as: \[CF(\{d3,d4\} \rightarrow d1) = \frac{SP(\{d1, d3, d4\})}{SP(\{d3,d4\})} = \frac{0.4}{0.4} = 100\%\]
+\item \textbf{Rule 5:} \(\{d1,d4\} \rightarrow \{d3\}\). The confidence of this rule is calculated as: \[CF(\{d1,d4\} \rightarrow d3) = \frac{SP(\{d1, d3, d4\})}{SP(\{d1,d4\})} = \frac{0.4}{0.4} = 100\%\]
+\item \textbf{Rule 6:} \(\{d1,d3\} \rightarrow \{d4\}\). The confidence of this rule is calculated as: \[CF(\{d1,d3\} \rightarrow d4) = \frac{SP(\{d1, d3, d4\})}{SP(\{d1,d3\})} = \frac{0.4}{0.4} = 100\%\]
+\end{itemize}
+Consider the maximal frequent itemset \(\{d3,d5\}\). From this itemset, we can generate several association rules:
+
+\begin{itemize}
+\item \textbf{Rule 7:} \(\{d3\} \rightarrow \{d5\}\). The confidence of this rule is calculated as: \[CF(d3 \rightarrow d5) = \frac{SP(\{d3, d5\})}{SP(d3)} = \frac{0.4}{0.8} = 50\%\]
+\item \textbf{Rule 8:} \(\{d5\} \rightarrow \{d3\}\). The confidence of this rule is calculated as: \[CF(d5 \rightarrow d3) = \frac{SP(\{d3, d5\})}{SP(d5)} = \frac{0.4}{0.6} = 67\%\]
+\end{itemize}
+List of rules that meet the minimum confidence threshold of 1.0 are \textbf{Rule 1, Rule 4, Rule 5, Rule 6}
+
 \end{document}
