@@ -92,4 +92,71 @@
         robust. The hidden data can be easily destroyed by common operations
         like image compression or simple steganalysis attacks.
 %-------------------------------------------------------------------------------
+\chapter{Data hiding on image}
+    To a computer, an image is a matrix of pixels. The three main types of
+    images are:
+    \begin{itemize}
+        \item \textbf{Bitmap (Binary) Images:} each pixel is represented by a
+            single bit (0 for white, 1 for black).
+        \item \textbf{Grayscale Images:} Each pixel uses an 8-bit value to
+            represent a range of black to white intensities.
+        \item \textbf{RGB Images:} Each pixel is composed of three 8-bit color
+            channels (Red, Green, Blue).
+    \end{itemize}
+    
+    The most crucial component for steganography is the \textbf{data redundancy}
+    within an image. Steganography leverages two key factors:
+    \begin{itemize}
+        \item \textbf{Redundant data:} insignificant bits whose alteration does
+            not noticeably affect the image.
+        \item \textbf{The imperceptibility of the human eye:} The human visual
+            system cannot perceive very small changes in color.
+    \end{itemize}
+    
+    Images with high detail are better suited for steganography because they
+    contain more redundant data. Regarding file formats, \textbf{BMP}
+    (uncompressed) files are large and can appear suspicious, whereas
+    \textbf{JPEG} (compressed) is the most common format and is well-suited for
+    modern steganography techniques.
+\section{Spatial domain techniques and vulnerabilities}
+    The \textbf{LSB} (Least Significant Bit) is the bit with the lowest weight,
+    while the \textbf{MSB} (Most Significant Bit) is the bit with the highest
+    weight. Changing the LSB of a pixel value creates a change that is virtually
+    imperceptible to the human eye. For example, two colors with RGB values of
+    (0,0,254) and (0,0,255) are nearly identical, demonstrating how a change in
+    the least significant position has minimal visual impact.
+    \subsection{LSB plane analysis}
+        An 8-bit immage can be separated into eight bit planes. The \textbf{MSB}
+        (Most Significant Bit) plane holds the main structure and overall visual
+        information of the image. In contrast, the original \textbf{LSB}
+        (Least Significant Bit) place of an image often looks like random noise.
+        
+        However, when a secret message is embedded using LSB steganography, it
+        replaces this randomness with a more structured pattern. Therefore,
+        extracting and analyzing the LSB plane can immediately reveal the
+        presence of hidden data.
+    \subsection{Steganalysis - Detection by Statistical Analysis}
+        Steganalysis is the art and science of detecting the presence of a
+        hidden message. While visually imperceptible, the act of \textbf{LSB
+        substitution} alters the statistical properties of an image.
+        Steganalytic tools are designed to analyze these subtle statistical
+        changes, identifying anomalies that deviate from the expected
+        distribution of a natural image, thereby revealing that data has been
+        hidden within it.
+    \subsection{Chi-Square attack}
+        The idea is that in natural images, the frequency of adjacent pixel
+        value pairs (e.g., 150 and 151) has a predictable relationship.
+        \textbf{LSB embedding} disrupts this relationship, causing the
+        frequencies of these pairs to become more equal.\\
+        
+        By measuring the difference between the observed frequency and the
+        expected frequency, we can detect the presence of a hidden mmessage.
+        A large difference in these values indicates a high probability that
+        data has been embedded.
+%-------------------------------------------------------------------------------
+\chapter{Data hiding with deep learning and machine learning}
+\chapter{Data hiding on video}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 \end{document}
