@@ -16,7 +16,7 @@
 \thispagestyle{empty}
 %-------------------------------------------------------------------------------
 \newpage
-\chapter*{ LỜI MỞ ĐẦU }
+\chapter*{ Preface }
 \thispagestyle{empty}
 %-------------------------------------------------------------------------------
 \vspace{\fill}
@@ -27,6 +27,69 @@
 %-------------------------------------------------------------------------------
 \newpage
 \setcounter{page}{1}
-\chapter{ Giới thiệu }
+\chapter{ Introduction }
+%-------------------------------------------------------------------------------
+\section{Introduction and history}
+    \textbf{Steganography} is the art of hidden writing, a term derived from
+    Greek. It's the art and science of communicating in a way that conceals the
+    very existence of the communication itself. The goal is to ensure that an
+    outsider, or third party, doesn't realize that a secret message is being
+    transmitted.
+\section{Fundamental concepts}
+    \textbf{Data hiding} is an overarching concept that refers to methods of
+    concealing information within another medium. Its purpose is to protect
+    information from unauthorized access and to maintain its confidentiality
+    and integrity.\\
+    
+    \textbf{Steganography} and \textbf{watermarking} are two specialized
+    sub-branches of data hiding, which differ primarily in their objectives.
+\section{Differentiating techniques}
+    \textbf{Steganography} aims to conceal the very existence of a message,
+    prioritizing un-detectability. The system is considered to have failed if
+    the message is discovered.\\
+    
+    In contrast, \textbf{digital watermarking} seeks to embed an identifying
+    mark into data, prioritizing robustness. For the system to be successful,
+    the watermark must survive attacks intended to remove or destroy it.\\
+    
+    \textbf{Cryptography} aims to protect the content of a message. It
+    transforms readable text into an unreadable form (ciphertext), making it
+    obvious that a message exists, but its meaning remains a secret.
+\section{Introduction to techniques and applications}
+    The following is a distinction of steganography methods based on the host
+    medium:
+    \begin{itemize}
+        \item \textbf{Text Steganography:} Considered the most difficult due to
+            the limited amount of redundant data available for embedding.
+        \item \textbf{Image Steganography:} The most popular and widely
+            researched method, as images provide a suitable medium for
+            concealment.
+        \item \textbf{Audio Steganography:} Involves embedding data into bits
+            or frequencies that are imperceptible to the human ear.
+        \item \textbf{Video Steganography:} Leverages the large data capacity
+            of video by combining both image and audio steganography techniques.
+        \item \textbf{Network Steganography:} Involves hiding information within
+            network packets, often in fields like TCP/IP headers.
+    \end{itemize}
+\section{Basic Technique: LSB Substitution}
+    \textbf{LSB substitution} (Least Significant Bit substitution) is a
+    fundamental and widely-used steganography technique. It works by replacing
+    the least significant bit (the last bit) of the bytes in a cover medium
+    (like an image or audio file) with the bits of the secret message.\\
+    
+    This method is effective because the least significant bit has the smallest
+    impact on the overall value of a byte. For example, in an image, changing
+    the LSB of a pixel's color value results in a negligible color shift that is
+    typically imperceptible to the humman eye.
+    \subsection{How it works}
+        Imagine a single pixel's red color value is represented by the byte
+        \(11010010\). The LSB is the last \(0\). To embed a secret message bit,
+        say a \(1\), you would simply replace the LSB, changing the byte to
+        \(11010011\). This minor alteration is difficult for an observer to
+        notice without specialized tools, effectively hiding the seret message.
+    \subsection{Advantages and Disadvantages}
+        It is simple to understand and easy to iplement. But it is not very
+        robust. The hidden data can be easily destroyed by common operations
+        like image compression or simple steganalysis attacks.
 %-------------------------------------------------------------------------------
 \end{document}
